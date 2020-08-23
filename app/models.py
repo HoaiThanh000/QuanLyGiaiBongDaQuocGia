@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Time, Boolean
+from sqlalchemy import Column, String, Integer, ForeignKey, Date, Time, Boolean
 from sqlalchemy.orm import relationship
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import BaseView, expose
@@ -42,7 +42,7 @@ class CauThu(db.Model):
 
     MaCauThu = Column(Integer, primary_key=True, autoincrement=True)
     TenCauThu = Column(String(50), nullable=False)
-    NgaySinh = Column(DateTime, nullable=False)
+    NgaySinh = Column(Date, nullable=False)
     GhiChu = Column(String(100), nullable=True)
     maloaicauthu = Column(Integer, ForeignKey(LoaiCauThu.MaLoaiCauThu), nullable=False)
     madoi = Column(Integer, ForeignKey(DoiBong.MaDoi), nullable=False)
@@ -63,7 +63,7 @@ class TranDau(db.Model):
     MaTranDau = Column(Integer, primary_key=True, autoincrement=True)
     DoiChuNha = Column(Integer, ForeignKey(DoiBong.MaDoi), nullable=False)
     DoiKhach = Column(Integer, ForeignKey(DoiBong.MaDoi), nullable=False)
-    NgayThiDau = Column(DateTime, nullable=False)
+    NgayThiDau = Column(Date, nullable=False)
     GioThiDau = Column(Time, nullable=False)
     SanThiDau = Column(String(50), nullable=False)
     TySo = Column(String(10), nullable=True)
@@ -155,9 +155,12 @@ class BanThangModelView(AuthenticatedView):
 
 # Loại Bàn Thắng
 class LoaiBanThangModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
     can_export = True
+    can_edit = False
+    fast_mass_delete = False
+    column_editable_list = ['TenLoaiBanThang']
+    create_modal = True
+    list_template = 'admin/listLoaiBanThang.html'
 
 
 # Trận đấu
@@ -176,19 +179,18 @@ class VongDauModelView(AuthenticatedView):
 
 # Qui Định
 class QuiDinhModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
     can_export = True
+    can_view_details = True
 
 
 admin.add_view(DoiBongModelView(DoiBong, db.session))
 admin.add_view(CauThuModelView(CauThu, db.session))
 admin.add_view(LoaiCauThuModelView(LoaiCauThu, db.session))
 admin.add_view(BanThangModelView(BanThang, db.session))
-admin.add_view(LoaiBanThangModelView(LoaiBanThang, db.session))
-admin.add_view(TranDauModelView(TranDau, db.session))
-admin.add_view(VongDauModelView(VongDau, db.session))
-admin.add_view(QuiDinhModelView(QuiDinh, db.session))
+admin.add_view(LoaiBanThangModelView(LoaiBanThang, db.session, name="Loại Bàn Thắng"))
+admin.add_view(TranDauModelView(TranDau, db.session, name="Trận Đấu"))
+admin.add_view(VongDauModelView(VongDau, db.session, name="Vòng Đấu"))
+admin.add_view(QuiDinhModelView(QuiDinh, db.session, name="Qui Định"))
 admin.add_view(LogoutView(name="Đăng xuất"))
 
 if __name__ == "__main__":

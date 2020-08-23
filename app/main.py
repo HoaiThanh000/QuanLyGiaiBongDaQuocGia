@@ -1,3 +1,5 @@
+from pip._vendor.requests.compat import str
+
 from app import app, login
 from flask import render_template, redirect, request
 from flask_login import login_user
