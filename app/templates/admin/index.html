@@ -1,10 +1,68 @@
 {% extends "admin/master.html" %}
 
+
 {% block body %}
     {% if current_user.is_authenticated %}
-        <h1>Chào mừng bạn đến với trang admin</h1>
-        <h1>{{ current_user.name }}</h1>
+        <img style="width:100%; height: 550px; padding-top:30px"
+     src="https://png.pngtree.com/thumb_back/fw800/back_pic/03/89/43/4357d90536a798c.jpg"/>
     {% else %}
         {% include "admin/login.html" %}
     {% endif %}
 {% endblock %}
+
+{% block title %}
+Trang Chủ - Admin
+{% endblock %}
+
+{% block brand %}
+<div class="navbar-brand" style="width:100%">
+    <a href="/admin" style="text-decoration:none">Quản Lý Giải Vô Địch Bóng Đá Quốc Gia</a>
+</div>
+{% endblock %}
+
+{% block main_menu %}
+<ul class="nav navbar-nav">
+    <li class="active">
+        <a href="/admin/">Trang chủ</a>
+    </li>
+    <li>
+        <a href="/admin/doibong/">Đội Bóng</a>
+    </li>
+    <li>
+        <a href="/admin/cauthu/">Cầu Thủ</a>
+    </li>
+    <li>
+        <a href="/admin/loaicauthu/">Loại Cầu Thủ</a>
+    </li>
+    <li>
+        <a href="/admin/banthang/">Bàn Thắng</a>
+    </li>
+    <li>
+        <a href="/admin/loaibanthang/">Loại Bàn Thắng</a>
+    </li>
+    <li>
+        <a href="/admin/trandau/">Trận Đấu</a>
+    </li>
+    <li>
+        <a href="/admin/vongdau/">Vòng Đấu</a>
+    </li>
+    <li>
+        <a href="/admin/quidinh/">Qui Định</a>
+    </li>
+    {% if current_user.is_authenticated %}
+    <li>
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" aria-expanded="true"> Chào {{
+            current_user.name }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/admin/logoutview/">Đăng xuất</a>
+            </li>
+        </ul>
+    </li>
+    {% else %}
+
+    {% endif %}
+
+</ul>
+{% endblock %}
+

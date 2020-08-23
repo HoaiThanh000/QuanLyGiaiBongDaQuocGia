@@ -121,8 +121,6 @@ class LogoutView(BaseView):
         logout_user()
         return redirect("/admin")
 
-    def is_accessible(self):
-        return current_user.is_authenticated
 
 
 # Đội bóng
@@ -130,6 +128,8 @@ class DoiBongModelView(AuthenticatedView):
     column_display_pk = False
     can_delete = True
     can_export = True
+    list_template = 'admin/listdoibong.html'
+    create_template = 'admin/createdoibong.html'
 
 
 # Cầu thủ
@@ -137,6 +137,8 @@ class CauThuModelView(AuthenticatedView):
     column_display_pk = False
     can_delete = True
     can_export = True
+    list_template = 'admin/listcauthu.html'
+    create_template = 'admin/createcauthu.html'
 
 
 # Loại cầu thủ
@@ -144,6 +146,11 @@ class LoaiCauThuModelView(AuthenticatedView):
     column_display_pk = False
     can_delete = True
     can_export = True
+    can_edit = False
+    fast_mass_delete = False
+    column_editable_list = ['TenLoaiCauThu']
+    list_template = 'admin/listloaicauthu.html'
+    create_template = 'admin/createloaicauthu.html'
 
 
 # Bàn Thắng
@@ -151,6 +158,8 @@ class BanThangModelView(AuthenticatedView):
     column_display_pk = False
     can_delete = True
     can_export = True
+    list_template = 'admin/listbanthang.html'
+    create_template = 'admin/createbanthang.html'
 
 
 # Loại Bàn Thắng
@@ -197,10 +206,10 @@ class QuiDinhModelView(AuthenticatedView):
     # edit_template = 'admin/editquidinh.html'
 
 
-admin.add_view(DoiBongModelView(DoiBong, db.session))
-admin.add_view(CauThuModelView(CauThu, db.session))
-admin.add_view(LoaiCauThuModelView(LoaiCauThu, db.session))
-admin.add_view(BanThangModelView(BanThang, db.session))
+admin.add_view(DoiBongModelView(DoiBong, db.session, name="Đội Bóng"))
+admin.add_view(CauThuModelView(CauThu, db.session, name="Cầu Thủ"))
+admin.add_view(LoaiCauThuModelView(LoaiCauThu, db.session, name="Loại Cầu Thủ"))
+admin.add_view(BanThangModelView(BanThang, db.session, name="Bàn Thắng"))
 admin.add_view(LoaiBanThangModelView(LoaiBanThang, db.session, name="Loại Bàn Thắng"))
 admin.add_view(TranDauModelView(TranDau, db.session, name="Trận Đấu"))
 admin.add_view(VongDauModelView(VongDau, db.session, name="Vòng Đấu"))

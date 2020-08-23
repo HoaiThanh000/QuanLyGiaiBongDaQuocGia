@@ -1,19 +1,19 @@
 {% extends 'admin/model/create.html' %}
 
 {% block body %}
-<h1 class="text-center text-success bg-primary" style="padding: 10px">Qui Định</h1>
+<h1 class="text-center text-success bg-primary" style="padding: 10px">Đội Bóng</h1>
 {{ super() }}
 {% endblock %}
 
 {% block navlinks %}
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" style="padding: 10px">
     <li>
-        <a href="/admin/quidinh/">Danh Sách</a>
+        <a href="/admin/doibong/">Danh sách</a>
     </li>
     <li class="active">
         <a href="javascript:void(0)">Tạo</a>
     </li>
-  </ul>
+</ul>
 {% endblock %}
 
 {% block create_form %}
@@ -31,7 +31,7 @@
     <li>
         <a href="/admin/">Trang chủ</a>
     </li>
-    <li>
+    <li class="active">
         <a href="/admin/doibong/">Đội Bóng</a>
     </li>
     <li>
@@ -52,7 +52,7 @@
     <li>
         <a href="/admin/vongdau/">Vòng Đấu</a>
     </li>
-    <li class="active">
+    <li>
         <a href="/admin/quidinh/">Qui Định</a>
     </li>
     {% if current_user.is_authenticated %}

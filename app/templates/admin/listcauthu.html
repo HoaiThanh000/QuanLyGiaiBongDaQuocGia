@@ -1,23 +1,30 @@
-{% extends 'admin/model/create.html' %}
+{% extends 'admin/model/list.html' %}
 
 {% block body %}
-<h1 class="text-center text-success bg-primary" style="padding: 10px">Qui Định</h1>
-{{ super() }}
+    <h1 class="text-center text-success bg-primary" style="padding: 10px">Cầu thủ</h1>
+    {{ super() }}
 {% endblock %}
 
-{% block navlinks %}
-<ul class="nav nav-tabs">
+{% block title %}
+    Cầu thủ
+{% endblock %}
+
+{% block model_menu_bar %}
+    <ul class="nav nav-tabs actions-nav" style="padding-top:10px">
+        <li class="active"><a href="javascript:void(0)">Danh sách</a></li>
     <li>
-        <a href="/admin/quidinh/">Danh Sách</a>
+            <a href="/admin/cauthu/new/?url=%2Fadmin%2Fcauthu%2F" title="Tạo thêm 1 dòng dữ liệu mới">Tạo</a></li>
+    <li>
+        <a href="/admin/cauthu/export/csv/?sort=0" title="Xuất File csv">Xuất File</a>
     </li>
-    <li class="active">
-        <a href="javascript:void(0)">Tạo</a>
+    <li>
+        <a href="javascript:void(0)" onclick="return modelActions.execute('delete');">Xóa</a>
     </li>
-  </ul>
+</ul>
 {% endblock %}
 
-{% block create_form %}
-    {{super()}}
+{% block empty_list_message %}
+    <h4 class="text-center bg-warning" style="padding:10px">Không có dòng dữ liệu nào!</h4>
 {% endblock %}
 
 {% block brand %}
@@ -34,7 +41,7 @@
     <li>
         <a href="/admin/doibong/">Đội Bóng</a>
     </li>
-    <li>
+    <li class="active">
         <a href="/admin/cauthu/">Cầu Thủ</a>
     </li>
     <li>
@@ -52,7 +59,7 @@
     <li>
         <a href="/admin/vongdau/">Vòng Đấu</a>
     </li>
-    <li class="active">
+    <li>
         <a href="/admin/quidinh/">Qui Định</a>
     </li>
     {% if current_user.is_authenticated %}
@@ -71,4 +78,3 @@
 
 </ul>
 {% endblock %}
-
