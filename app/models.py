@@ -159,8 +159,9 @@ class LoaiBanThangModelView(AuthenticatedView):
     can_edit = False
     fast_mass_delete = False
     column_editable_list = ['TenLoaiBanThang']
-    create_modal = True
+    create_modal = False
     list_template = 'admin/listLoaiBanThang.html'
+    create_template = 'admin/CreateLoaiBanThang.html'
 
 
 # Trận đấu
@@ -168,19 +169,32 @@ class TranDauModelView(AuthenticatedView):
     column_display_pk = False
     can_delete = True
     can_export = True
+    can_edit = True
+    form_columns = ['MaTranDau', 'DoiChuNha', 'DoiKhach', 'NgayThiDau', 'GioThiDau', 'SanThiDau', 'TySo', 'mavongdau', ]
+    list_template = 'admin/ListTranDau.html'
+    create_template = 'admin/createtrandau.html'
+    # edit_template = 'admin/editquidinh.html'
 
 
 # Vòng đấu
 class VongDauModelView(AuthenticatedView):
     column_display_pk = False
+    can_edit = False
+    fast_mass_delete = False
+    column_editable_list = ['TenVongDau']
+    create_modal = False
     can_delete = True
     can_export = True
-
+    list_template = 'admin/ListVongDau.html'
+    create_template = 'admin/createvongdau.html'
 
 # Qui Định
 class QuiDinhModelView(AuthenticatedView):
     can_export = True
-    can_view_details = True
+    can_edit = True
+    list_template = 'admin/ListQuiDinh.html'
+    create_template = 'admin/createquidinh.html'
+    # edit_template = 'admin/editquidinh.html'
 
 
 admin.add_view(DoiBongModelView(DoiBong, db.session))

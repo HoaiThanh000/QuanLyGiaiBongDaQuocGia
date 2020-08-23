@@ -1,0 +1,22 @@
+{% extends 'admin/model/create.html' %}
+
+{% block body %}
+<h1 class="text-center text-success bg-primary" style="padding: 10px">Trận Đấu</h1>
+{{ super() }}
+{% endblock %}
+
+{% block navlinks %}
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/admin/trandau/">Danh Sách</a>
+    </li>
+    <li class="active">
+        <a href="javascript:void(0)">Tạo</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block create_form %}
+    {{super()}}
+{% endblock %}
+

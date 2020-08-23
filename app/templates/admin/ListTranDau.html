@@ -1,0 +1,30 @@
+{% extends 'admin/model/list.html' %}
+
+{% block body %}
+<h1 class="text-center text-success bg-primary" style="padding: 10px">Trận Đấu</h1>
+{{ super() }}
+{% endblock %}
+
+{% block title %}
+Trận đấu
+{% endblock %}
+
+{% block model_menu_bar %}
+<ul class="nav nav-tabs actions-nav">
+    <li class="active">
+        <a href="javascript:void(0)">Danh Sách</a>
+    </li>
+    <li>
+        <a href="/admin/trandau/new/?url=%2Fadmin%2Ftrandau%2F" title="Thêm 1 dòng dữ liệu mới">Tạo</a></li>
+    <li>
+        <a href="/admin/trandau/export/csv/" title="Xuất File CSV">Xuất File</a>
+    </li>
+    <li>
+        <a href="javascript:void(0)" onclick="return modelActions.execute('delete');">Xóa</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block empty_list_message %}
+<h4 class="text-center bg-warning" style="padding:10px">Không có dòng dữ liệu nào!</h4>
+{% endblock %}
