@@ -27,7 +27,10 @@ class DoiBong(db.Model):
     TenDoi = Column(String(50), nullable=False)
     SanNha = Column(String(100), nullable=False)
     ds_cauthu = relationship('CauThu', backref='doibong', lazy=True)
+    # ds_trandau = relationship('TranDau', backref= 'doibong', lazy= True)
 
+    def __str__(self):
+        return self.TenDoi
 
 class LoaiCauThu(db.Model):
     __tablename__ = "loaicauthu"
@@ -35,6 +38,9 @@ class LoaiCauThu(db.Model):
     MaLoaiCauThu = Column(Integer, primary_key=True, autoincrement=True)
     TenLoaiCauThu = Column(String(50), nullable=False)
     ds_cauthu = relationship('CauThu', backref='loaicauthu', lazy=True)
+
+    def __str__(self):
+        return self.TenLoaiCauThu
 
 
 class CauThu(db.Model):
@@ -56,6 +62,9 @@ class VongDau(db.Model):
     TenVongDau = Column(String(50), nullable=False)
     ds_trandau = relationship('TranDau', backref='vongdau', lazy=True)
 
+    def __str__(self):
+        return self.TenVongDau
+
 
 class TranDau(db.Model):
     __tablename__ = "trandau"
@@ -68,7 +77,7 @@ class TranDau(db.Model):
     SanThiDau = Column(String(50), nullable=False)
     TySo = Column(String(10), nullable=True)
     mavongdau = Column(Integer, ForeignKey(VongDau.MaVongDau), nullable=False)
-
+    ds_banthang = relationship('BanThang',backref='trandau',lazy=True)
 
 class LoaiBanThang(db.Model):
     __tablename__ = "loaibanthang"
@@ -76,6 +85,9 @@ class LoaiBanThang(db.Model):
     MaLoaiBanThang = Column(Integer, primary_key=True, autoincrement=True)
     TenLoaiBanThang = Column(String(50), nullable=False)
     ds_banthang = relationship('BanThang', backref='loaibanthang', lazy=True)
+
+    def __str__(self):
+        return self.TenLoaiBanThang
 
 
 class BanThang(db.Model):
@@ -86,6 +98,7 @@ class BanThang(db.Model):
     MaLoaiBanThang = Column(Integer, ForeignKey(LoaiBanThang.MaLoaiBanThang), nullable=False)
     ThoiDiem = Column(String(10), nullable=False)
     MaTranDau = Column(Integer, ForeignKey(TranDau.MaTranDau), nullable=False)
+
 
 
 class QuiDinh(db.Model):
