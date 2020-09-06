@@ -8,10 +8,12 @@ class User(db.Model, UserMixin):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(50), nullable=False)
-    active = Column(Boolean, default=True)
-    username = Column(String(50), nullable=False)
-    password = Column(String(50), nullable=False)
+    ten = Column(String(50), nullable=False)
+    ngaysinh = Column(Date, nullable=False)
+    sodt = Column(String(10), nullable=False)
+    diachi = Column(String(100), nullable=False)
+    tentaikhoan = Column(String(50), nullable=False)
+    matkhau = Column(String(50), nullable=False)
 
     def __str__(self):
         return self.name
