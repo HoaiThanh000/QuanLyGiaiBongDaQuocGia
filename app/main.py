@@ -31,4 +31,6 @@ def login_admin():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from app.admin import *
+
+    app.run(debug=True, port=8800)

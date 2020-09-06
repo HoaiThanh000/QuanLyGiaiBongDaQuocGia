@@ -1,10 +1,7 @@
 from sqlalchemy import Column, String, Integer, ForeignKey, Date, Time, Boolean
 from sqlalchemy.orm import relationship
-from flask_admin.contrib.sqla import ModelView
-from flask_admin import BaseView, expose
-from flask_login import UserMixin, logout_user, current_user
-from app import db, admin
-from flask import redirect
+from flask_login import UserMixin
+from app import db
 
 
 class User(db.Model, UserMixin):
@@ -23,211 +20,114 @@ class User(db.Model, UserMixin):
 class DoiBong(db.Model):
     __tablename__ = "doibong"
 
-    MaDoi = Column(Integer, primary_key=True, autoincrement=True)
-    TenDoi = Column(String(50), nullable=False)
-    SanNha = Column(String(100), nullable=False)
+    madoi = Column(Integer, primary_key=True, autoincrement=True)
+    tendoi = Column(String(50), nullable=False)
+    sannha = Column(String(100), nullable=False)
     ds_cauthu = relationship('CauThu', backref='doibong', lazy=True)
-    # ds_trandau = relationship('TranDau', backref= 'doibong', lazy= True)
+    doi_nha = relationship('ThamGia', backref='doi_nha', foreign_keys='ThamGia.doichunha')
+    doi_khach = relationship('ThamGia', backref='doi_khach', foreign_keys='ThamGia.doikhach')
 
     def __str__(self):
         return self.TenDoi
 
+
 class LoaiCauThu(db.Model):
     __tablename__ = "loaicauthu"
 
-    MaLoaiCauThu = Column(Integer, primary_key=True, autoincrement=True)
-    TenLoaiCauThu = Column(String(50), nullable=False)
+    maloaicauthu = Column(Integer, primary_key=True, autoincrement=True)
+    tenloaicauthu = Column(String(50), nullable=False)
     ds_cauthu = relationship('CauThu', backref='loaicauthu', lazy=True)
 
     def __str__(self):
-        return self.TenLoaiCauThu
+        return self.tenloaicauthu
 
 
 class CauThu(db.Model):
     __tablename__ = "cauthu"
 
-    MaCauThu = Column(Integer, primary_key=True, autoincrement=True)
-    TenCauThu = Column(String(50), nullable=False)
-    NgaySinh = Column(Date, nullable=False)
-    GhiChu = Column(String(100), nullable=True)
-    maloaicauthu = Column(Integer, ForeignKey(LoaiCauThu.MaLoaiCauThu), nullable=False)
-    madoi = Column(Integer, ForeignKey(DoiBong.MaDoi), nullable=False)
+    macauthu = Column(Integer, primary_key=True, autoincrement=True)
+    tencauthu = Column(String(50), nullable=False)
+    ngaysinh = Column(Date, nullable=False)
+    ghichu = Column(String(100), nullable=True)
+    maloaicauthu = Column(Integer, ForeignKey(LoaiCauThu.maloaicauthu), nullable=False)
+    madoi = Column(Integer, ForeignKey(DoiBong.madoi), nullable=False)
     ds_banthang = relationship('BanThang', backref='cauthu', lazy=True)
 
 
 class VongDau(db.Model):
     __tablename__ = "vongdau"
 
-    MaVongDau = Column(Integer, primary_key=True, autoincrement=True)
-    TenVongDau = Column(String(50), nullable=False)
+    mavongdau = Column(Integer, primary_key=True, autoincrement=True)
+    tenvongdau = Column(String(50), nullable=False)
     ds_trandau = relationship('TranDau', backref='vongdau', lazy=True)
 
     def __str__(self):
-        return self.TenVongDau
+        return self.tenvongdau
 
 
 class TranDau(db.Model):
     __tablename__ = "trandau"
 
-    MaTranDau = Column(Integer, primary_key=True, autoincrement=True)
-    DoiChuNha = Column(Integer, ForeignKey(DoiBong.MaDoi), nullable=False)
-    DoiKhach = Column(Integer, ForeignKey(DoiBong.MaDoi), nullable=False)
-    NgayThiDau = Column(Date, nullable=False)
-    GioThiDau = Column(Time, nullable=False)
-    SanThiDau = Column(String(50), nullable=False)
-    TySo = Column(String(10), nullable=True)
-    mavongdau = Column(Integer, ForeignKey(VongDau.MaVongDau), nullable=False)
-    ds_banthang = relationship('BanThang',backref='trandau',lazy=True)
+    matrandau = Column(Integer, primary_key=True, autoincrement=True)
+    mavongdau = Column(Integer, ForeignKey(VongDau.mavongdau), nullable=False)
+    ds_banthang = relationship('BanThang', backref='trandau', lazy=True)
+    ds_thamgia = relationship('ThamGia', backref='trandau', lazy=True)
+
+
+class ThamGia(db.Model):
+    __tablename__ = "thamgia"
+
+    doichunha = Column(Integer, ForeignKey(DoiBong.madoi), primary_key=True, nullable=False)
+    doikhach = Column(Integer, ForeignKey(DoiBong.madoi), primary_key=True, nullable=False)
+    matrandau = Column(Integer, ForeignKey(TranDau.matrandau), primary_key=True, nullable=False)
+    ngaythidau = Column(Date, nullable=False)
+    giothidau = Column(Time, nullable=False)
+    santhidau = Column(String(50), nullable=False)
+    tyso = Column(String(10), nullable=True)
+
 
 class LoaiBanThang(db.Model):
     __tablename__ = "loaibanthang"
 
-    MaLoaiBanThang = Column(Integer, primary_key=True, autoincrement=True)
-    TenLoaiBanThang = Column(String(50), nullable=False)
+    maloaibanthang = Column(Integer, primary_key=True, autoincrement=True)
+    tenloaibanthang = Column(String(50), nullable=False)
     ds_banthang = relationship('BanThang', backref='loaibanthang', lazy=True)
 
     def __str__(self):
-        return self.TenLoaiBanThang
+        return self.tenloaibanthang
 
 
 class BanThang(db.Model):
     __tablename__ = "banthang"
 
-    MaBanThang = Column(Integer, primary_key=True, autoincrement=True)
-    MaCauThu = Column(Integer, ForeignKey(CauThu.MaCauThu), nullable=False)
-    MaLoaiBanThang = Column(Integer, ForeignKey(LoaiBanThang.MaLoaiBanThang), nullable=False)
-    ThoiDiem = Column(String(10), nullable=False)
-    MaTranDau = Column(Integer, ForeignKey(TranDau.MaTranDau), nullable=False)
-
+    mabanthang = Column(Integer, primary_key=True, autoincrement=True)
+    macauthu = Column(Integer, ForeignKey(CauThu.macauthu), nullable=False)
+    maloaibanthang = Column(Integer, ForeignKey(LoaiBanThang.maloaibanthang), nullable=False)
+    thoidiem = Column(String(10), nullable=False)
+    matrandau = Column(Integer, ForeignKey(TranDau.matrandau), nullable=False)
 
 
 class QuiDinh(db.Model):
     __tablename__ = "quidinh"
 
-    MaMuaGiai = Column(Integer, primary_key=True, autoincrement=True)
-    TuoiToiThieu = Column(Integer, nullable=False)
-    TuoiToiDa = Column(Integer, nullable=False)
-    SoCauThuToiThieu = Column(Integer, nullable=False)
-    SoCauThuToiDa = Column(Integer, nullable=False)
-    SoCauThuNuocNgoaiToiDa = Column(Integer, nullable=False)
-    SoLuongCacLoaiBanThang = Column(Integer, nullable=False)
-    ThoiDiemGhiBanToiDa = Column(Integer, nullable=False)
-    DiemSoThang = Column(Integer, nullable=False)
-    DiemSoThua = Column(Integer, nullable=False)
-    DiemSoHoa = Column(Integer, nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    tuoitoithieu = Column(Integer, nullable=False)
+    tuoitoida = Column(Integer, nullable=False)
+    socauthutoithieu = Column(Integer, nullable=False)
+    socauthutoida = Column(Integer, nullable=False)
+    socauthunuocngoaitoida = Column(Integer, nullable=False)
+    soluongcacloaibanthang = Column(Integer, nullable=False)
+    thoidiemghibantoida = Column(Integer, nullable=False)
+    diemsothang = Column(Integer, nullable=False)
+    diemsothua = Column(Integer, nullable=False)
+    diemsohoa = Column(Integer, nullable=False)
     ## 1: bàn thắng
     ## 2: Hiệu số
     ## 3: Điểm
     ## 4: Đối Kháng
     ## lưu: "1234"
-    ThuTuUuTien = Column(String(10), nullable=False)
+    thutuuutien = Column(String(10), nullable=False)
 
-
-class AuthenticatedView(ModelView):
-    def is_accessible(self):
-        return current_user.is_authenticated
-
-
-class LogoutView(BaseView):
-    @expose('/')
-    def index(self):
-        logout_user()
-        return redirect("/admin")
-
-
-
-# Đội bóng
-class DoiBongModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
-    can_export = True
-    list_template = 'admin/listdoibong.html'
-    create_template = 'admin/createdoibong.html'
-
-
-# Cầu thủ
-class CauThuModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
-    can_export = True
-    list_template = 'admin/listcauthu.html'
-    create_template = 'admin/createcauthu.html'
-
-
-# Loại cầu thủ
-class LoaiCauThuModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
-    can_export = True
-    can_edit = False
-    fast_mass_delete = False
-    column_editable_list = ['TenLoaiCauThu']
-    list_template = 'admin/listloaicauthu.html'
-    create_template = 'admin/createloaicauthu.html'
-
-
-# Bàn Thắng
-class BanThangModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
-    can_export = True
-    list_template = 'admin/listbanthang.html'
-    create_template = 'admin/createbanthang.html'
-
-
-# Loại Bàn Thắng
-class LoaiBanThangModelView(AuthenticatedView):
-    can_export = True
-    can_edit = False
-    fast_mass_delete = False
-    column_editable_list = ['TenLoaiBanThang']
-    create_modal = False
-    list_template = 'admin/listLoaiBanThang.html'
-    create_template = 'admin/CreateLoaiBanThang.html'
-
-
-# Trận đấu
-class TranDauModelView(AuthenticatedView):
-    column_display_pk = False
-    can_delete = True
-    can_export = True
-    can_edit = True
-    form_columns = ['MaTranDau', 'DoiChuNha', 'DoiKhach', 'NgayThiDau', 'GioThiDau', 'SanThiDau', 'TySo', 'mavongdau', ]
-    list_template = 'admin/ListTranDau.html'
-    create_template = 'admin/createtrandau.html'
-    # edit_template = 'admin/editquidinh.html'
-
-
-# Vòng đấu
-class VongDauModelView(AuthenticatedView):
-    column_display_pk = False
-    can_edit = False
-    fast_mass_delete = False
-    column_editable_list = ['TenVongDau']
-    create_modal = False
-    can_delete = True
-    can_export = True
-    list_template = 'admin/ListVongDau.html'
-    create_template = 'admin/createvongdau.html'
-
-# Qui Định
-class QuiDinhModelView(AuthenticatedView):
-    can_export = True
-    can_edit = True
-    list_template = 'admin/ListQuiDinh.html'
-    create_template = 'admin/createquidinh.html'
-    # edit_template = 'admin/editquidinh.html'
-
-
-admin.add_view(DoiBongModelView(DoiBong, db.session, name="Đội Bóng"))
-admin.add_view(CauThuModelView(CauThu, db.session, name="Cầu Thủ"))
-admin.add_view(LoaiCauThuModelView(LoaiCauThu, db.session, name="Loại Cầu Thủ"))
-admin.add_view(BanThangModelView(BanThang, db.session, name="Bàn Thắng"))
-admin.add_view(LoaiBanThangModelView(LoaiBanThang, db.session, name="Loại Bàn Thắng"))
-admin.add_view(TranDauModelView(TranDau, db.session, name="Trận Đấu"))
-admin.add_view(VongDauModelView(VongDau, db.session, name="Vòng Đấu"))
-admin.add_view(QuiDinhModelView(QuiDinh, db.session, name="Qui Định"))
-admin.add_view(LogoutView(name="Đăng xuất"))
 
 if __name__ == "__main__":
     db.create_all()
