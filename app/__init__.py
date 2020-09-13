@@ -20,6 +20,6 @@ admin = Admin(app=app, name="QUAN LY GIAI BONG DA QUOC GIA", template_mode="boot
 login = LoginManager(app=app)
 
 account_sid = "ACdd5c869458bf4ef18f8eeee1c6efbe82"
-auth_token = "bc7fcec21af2c74f4b5819f63cc1b401"
+auth_token = "d3ee411f5353b6acbc58a0898b6f1978"
 
 client = Client(account_sid, auth_token)

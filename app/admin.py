@@ -290,7 +290,8 @@ class ThemLichThiDauView(BaseView):
             tendoikhach = dao.read_tendoibong(int(doikhach))
             sodtdn = "+84" + dao.read_sdt_db(int(doinha))[1:]
             sodtdk = "+84" + dao.read_sdt_db(int(doikhach))[1:]
-            noidungtinnhan = "From: Quản lý giải vô địch bóng đá quốc gia - lịch thi đấu - %s với %s - ngày thi đấu: %s - giờ thi đấu: %s - sân thi đấu: %s" % (tendoinha, tendoikhach, ngaythidau, giothidau, santhidau)
+            noidungtinnhan = "From: Quản lý giải vô địch bóng đá quốc gia - lịch thi đấu - %s với %s - ngày thi đấu: %s - giờ thi đấu: %s - sân thi đấu: %s" % (
+            tendoinha, tendoikhach, ngaythidau, giothidau, santhidau)
             msg = dao.add_thamgia(ngaythidau=ngaythidau, giothidau=giothidau, santhidau=santhidau,
                                   doinha=doinha, doikhach=doikhach, trandau=trandau)
             if msg is None:
