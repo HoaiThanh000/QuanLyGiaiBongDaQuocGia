@@ -1,0 +1,46 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Tạo Loại Bàn Thắng</h1>
+<ul class="nav nav-tabs" style="padding: 10px">
+    <li>
+        <a href="/admin/loaibanthang/">Danh sách</a>
+    </li>
+    <li class="active">
+        <a href="javascript:void(0)">Tạo</a>
+    </li>
+</ul>
+<div>
+    {% if msg %}
+    <div class="alert {% if msg_c == 1 %} alert-success {% else %} alert-danger {% endif %}">{{ msg }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <div>
+                <label class="col-md-2 control-label" for="tlbt">Tên loại bàn thắng: <strong style="color: red">*</strong></label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="tenloaibanthang" id="tlbt"
+                       required/>
+                </div>
+            </div>
+            <div class="col-md-offset-10 col-md-10 submit-row" style="margin-top:20px">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+

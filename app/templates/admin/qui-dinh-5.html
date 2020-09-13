@@ -1,0 +1,55 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+
+{% block title %}
+Qui định 5
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Qui Định 5</h1>
+
+<div>
+    {% if msg %}
+    <div class="alert {% if msg_c == 1 %} alert-success {% else %} alert-danger {% endif %}">{{ msg }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <div>
+                <label for="dsbthang">Điểm số bàn thắng: </label>
+                <input class="form-control" type="number" name="diemsothang" id="dsbthang"
+                       value="{{ quidinh5.diemsothang }}" required/>
+            </div>
+            <div>
+                <label for="dsbh">Điểm số bàn hòa: </label>
+                <input class="form-control" type="number" name="diemsohoa" id="dsbh"
+                       value="{{ quidinh5.diemsohoa }}" required/>
+            </div>
+            <div>
+                <label for="dsbthua">Điểm số bàn thua: </label>
+                <input class="form-control" type="number" name="diemsothua" id="dsbthua"
+                       value="{{ quidinh5.diemsothua }}" required/>
+            </div>
+            <div>
+                <label for="ttut">Thứ tự ưu tiên(1234 - 1:bàn thắng, 2:hiệu số, 3:điểm, 4:đối kháng) </label>
+                <input class="form-control" type="text" name="thutuuutien" id="ttut"
+                       value="{{ quidinh5.thutuuutien }}" required/>
+            </div>
+            <div>
+                <input type="submit" value="Cập nhật" class="btn btn-danger"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

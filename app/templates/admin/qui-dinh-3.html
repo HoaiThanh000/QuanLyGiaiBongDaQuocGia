@@ -1,0 +1,44 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+
+{% block title %}
+Qui định 3
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Qui Định 3</h1>
+<div>
+    {% if msg %}
+    <div class="alert {% if msg_c == 1 %} alert-success {% else %} alert-danger {% endif %}">{{ msg }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <div>
+                <label for="sllbt">Số lượng các loại bàn thắng: </label>
+                <input class="form-control" type="number" name="soluongcacloaibanthang" id="sllbt"
+                       value="{{ quidinh3.soluongcacloaibanthang }}" required/>
+            </div>
+            <div>
+                <label for="tdgbtd">Thời điểm ghi bàn tối đa </label>
+                <input class="form-control" type="number" name="thoidiemghibantoida" id="tdgbtd"
+                       value="{{ quidinh3.thoidiemghibantoida }}" required/>
+            </div>
+            <div>
+                <input type="submit" value="Cập nhật" class="btn btn-danger"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

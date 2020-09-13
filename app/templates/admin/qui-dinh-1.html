@@ -1,0 +1,59 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+
+{% block title %}
+Qui định 1
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Qui Định 1</h1>
+
+<div>
+    {% if msg %}
+    <div class="alert {% if msg_c == 1 %} alert-success {% else %} alert-danger {% endif %}">{{ msg }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <div>
+                <label for="tuoitoithieu">Tuổi tối thiểu của cầu thủ: </label>
+                <input class="form-control" type="number" name="tuoitoithieu" id="tuoitoithieu"
+                       value="{{ quidinh1.tuoitoithieu }}" required/>
+            </div>
+            <div>
+                <label for="tuoitoida">Tuổi tối đa của cầu thủ: </label>
+                <input class="form-control" type="number" name="tuoitoida" id="tuoitoida"
+                       value="{{ quidinh1.tuoitoida }}" required/>
+            </div>
+            <div>
+                <label for="slcttoithieu">Số lượng cầu thủ tối thiểu: </label>
+                <input class="form-control" type="number" name="socauthutoithieu" id="slcttoithieu"
+                       value="{{ quidinh1.socauthutoithieu }}" required/>
+            </div>
+            <div>
+                <label for="slcttoida">Số lượng cầu thủ tối đa: </label>
+                <input class="form-control" type="number" name="socauthutoida" id="slcttoida"
+                       value="{{ quidinh1.socauthutoida }}" required/>
+            </div>
+            <div>
+                <label for="slctnuocnguoi">Số lượng cầu thủ nước ngoài: </label>
+                <input class="form-control" type="number" name="socauthunuocngoai" id="slctnuocnguoi"
+                       value="{{ quidinh1.socauthunuocngoaitoida }}" required/>
+            </div>
+            <div>
+                <input type="submit" value="Cập nhật" class="btn btn-danger msubmit1"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

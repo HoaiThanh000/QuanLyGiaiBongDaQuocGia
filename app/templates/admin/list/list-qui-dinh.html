@@ -1,0 +1,30 @@
+{% extends 'admin/model/list.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Quản Lý Qui Định</h1>
+{{ super() }}
+{% endblock %}
+
+{% block title %}
+Qui Định
+{% endblock %}
+
+{% block model_menu_bar %}
+{% include "admin/utils/model-menu-bar.html" %}
+{% endblock %}
+
+{% block empty_list_message %}
+<h4 class="text-center bg-warning" style="padding:10px">Không có dòng dữ liệu nào!</h4>
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}

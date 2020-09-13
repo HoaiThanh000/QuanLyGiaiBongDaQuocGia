@@ -1,0 +1,56 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+
+{% block title %}
+Danh sách các cầu thủ ghi bàn
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Danh Sách Các Cầu Thủ Ghi Bàn</h1>
+
+<div class="mbody">
+    <div class="row">
+        <div class="mdate col-sm-10">Ngày: {{ ngay }}</div>
+        <button class="btn btn-danger mbtn"><a class="ma" href="{{ url_for('xuat_ct_gb') }}">Xuất báo cáo</a></button>
+    </div>
+    <div class="table-responsive">
+        <table class="mtable" width="100%" border="1">
+            <tr>
+                <th>STT</th>
+                <th>Cầu Thủ</th>
+                <th>Đội</th>
+                <th>Loại Cầu Thủ</th>
+                <th>Số Bàn Thắng</th>
+            </tr>
+            {% for cauthu in ds_ct_gb %}
+            <tr>
+                <td>{{ cauthu.stt }}</td>
+                <td>{{ cauthu.tencauthu }}</td>
+                {% for doibong in ds_doibong %}
+                    {% if doibong.madoi == cauthu.doi %}
+                        <td> {{ doibong.tendoi }} </td>
+                    {% endif %}
+                {% endfor %}
+                {% for loaicauthu in ds_loaicauthu %}
+                    {% if loaicauthu.maloaicauthu == cauthu.loaicauthu %}
+                        <td> {{ loaicauthu.tenloaicauthu }} </td>
+                    {% endif%}
+                {% endfor %}
+                <td>{{ cauthu.sobanthang }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

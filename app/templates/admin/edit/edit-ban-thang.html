@@ -1,0 +1,34 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Cập Nhật Bàn Thắng</h1>
+{{ super() }}
+{% endblock %}
+
+{% block navlinks %}
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/admin/banthang/">Danh Sách</a>
+    </li>
+    <li>
+        <a href="/admin/banthang/new/?url=%2Fadmin%2Fbanthang%2F">Tạo</a>
+    </li>
+    <li class="active">
+        <a href="javascript:void(0)">Cập nhật</a>
+    </li>
+  </ul>
+{% endblock %}
+
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+

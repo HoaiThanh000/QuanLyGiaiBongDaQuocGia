@@ -1,0 +1,54 @@
+{% extends 'admin/master.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+
+{% block title %}
+Bảng xếp hạng
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Bảng Xếp Hạng</h1>
+
+<div class="mbody">
+    <div class="row">
+        <div class="mdate col-sm-10">Ngày: {{ ngay }}</div>
+        <button class="btn btn-danger mbtn"><a class="ma" href="{{ url_for('xuat_bxh') }}">Xuất báo cáo</a></button>
+    </div>
+    <div class="table-responsive">
+        <table class="mtable" width="100%" border="1">
+            <tr>
+                <th>STT</th>
+                <th>Đội</th>
+                <th>Thắng</th>
+                <th>Hòa</th>
+                <th>Thua</th>
+                <th>Hiệu Số</th>
+                <th>Hạng</th>
+            </tr>
+            {% for doibong in ds_bxh %}
+            <tr>
+                <td>{{ doibong.stt }}</td>
+                <td>{{ doibong.doibong }}</td>
+                <td>{{ doibong.thang }}</td>
+                <td>{{ doibong.hoa }}</td>
+                <td>{{ doibong.thua }}</td>
+                <td>{{ doibong.hieuso }}</td>
+                <td>{{ doibong.hang }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'admin/master.html' %}
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Tạo Lịch Thi Đấu</h1>
+<ul class="nav nav-tabs">
+    <li>
+        <a href="/admin/thamgia/">Danh Sách</a>
+    </li>
+    <li class="active">
+        <a href="javascript:void(0)">Tạo</a>
+    </li>
+</ul>
+<div>
+    {% if msg %}
+    <div class="alert {% if msg_c == 1 %} alert-success {% else %} alert-danger {% endif %}">{{ msg }}</div>
+    {% endif %}
+    <form method="post">
+        <div class="form-group">
+            <div>
+                <label for="ntd">Ngày thi đấu: <strong
+                        style="color: red">*</strong></label>
+                <div>
+                    <input class="form-control" type="date" name="ngaythidau" id="ntd"
+                           required/>
+                </div>
+            </div>
+            <div>
+                <label for="gtd">Giờ thi đấu: <strong
+                        style="color: red">*</strong></label>
+                <div>
+                    <input class="form-control" type="time" name="giothidau" id="gtd"
+                           required/>
+                </div>
+            </div>
+            <div>
+                <label for="std">Sân thi đấu: <strong
+                        style="color: red">*</strong></label>
+                <div>
+                    <input class="form-control" type="text" name="santhidau" id="std"
+                           required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dn">Đội nhà: <strong style="color: red">*</strong></label>
+                <select class="form-control" name="doinha" id="dn">
+                    {% for doibong in ds_doibong %}
+                    <option value="{{ doibong.madoi }}">{{ doibong.tendoi }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dk">Đội khách: <strong style="color: red">*</strong></label>
+                <select class="form-control" name="doikhach" id="dk">
+                    {% for doibong in ds_doibong %}
+                    <option value="{{ doibong.madoi }}">{{ doibong.tendoi }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="td">Trận đấu: <strong style="color: red">*</strong></label>
+                <select class="form-control" name="trandau" id="td">
+                    {% for trandau in ds_trandau %}
+                    <option value="{{ trandau.matrandau }}">{{ trandau.tentrandau }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-offset-10 col-md-10 submit-row" style="margin-top:20px">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+
+
+{% block create_form %}
+{{super()}}
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
+

@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     matkhau = Column(String(50), nullable=False)
 
     def __str__(self):
-        return self.name
+        return self.ten
 
 
 class DoiBong(db.Model):
@@ -25,12 +25,13 @@ class DoiBong(db.Model):
     madoi = Column(Integer, primary_key=True, autoincrement=True)
     tendoi = Column(String(50), nullable=False)
     sannha = Column(String(100), nullable=False)
+    sodt = Column(String(10), nullable=False)
     ds_cauthu = relationship('CauThu', backref='doibong', lazy=True)
     doi_nha = relationship('ThamGia', backref='doi_nha', foreign_keys='ThamGia.doichunha')
     doi_khach = relationship('ThamGia', backref='doi_khach', foreign_keys='ThamGia.doikhach')
 
     def __str__(self):
-        return self.TenDoi
+        return self.tendoi
 
 
 class LoaiCauThu(db.Model):
@@ -55,6 +56,9 @@ class CauThu(db.Model):
     madoi = Column(Integer, ForeignKey(DoiBong.madoi), nullable=False)
     ds_banthang = relationship('BanThang', backref='cauthu', lazy=True)
 
+    def __str__(self):
+        return self.tencauthu
+
 
 class VongDau(db.Model):
     __tablename__ = "vongdau"
@@ -71,9 +75,13 @@ class TranDau(db.Model):
     __tablename__ = "trandau"
 
     matrandau = Column(Integer, primary_key=True, autoincrement=True)
+    tentrandau = Column(String(50), nullable=False)
     mavongdau = Column(Integer, ForeignKey(VongDau.mavongdau), nullable=False)
     ds_banthang = relationship('BanThang', backref='trandau', lazy=True)
     ds_thamgia = relationship('ThamGia', backref='trandau', lazy=True)
+
+    def __str__(self):
+        return self.tentrandau
 
 
 class ThamGia(db.Model):
@@ -105,7 +113,7 @@ class BanThang(db.Model):
     mabanthang = Column(Integer, primary_key=True, autoincrement=True)
     macauthu = Column(Integer, ForeignKey(CauThu.macauthu), nullable=False)
     maloaibanthang = Column(Integer, ForeignKey(LoaiBanThang.maloaibanthang), nullable=False)
-    thoidiem = Column(String(10), nullable=False)
+    thoidiem = Column(Integer, nullable=False)
     matrandau = Column(Integer, ForeignKey(TranDau.matrandau), nullable=False)
 
 

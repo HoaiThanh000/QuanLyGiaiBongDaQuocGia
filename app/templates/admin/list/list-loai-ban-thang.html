@@ -1,0 +1,44 @@
+{% extends 'admin/model/list.html' %}
+
+{% block head %}
+{% include "admin/utils/head.html" %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center bg-info mtitle">Quản Lý Loại Bàn Thắng</h1>
+{{ super() }}
+{% endblock %}
+
+{% block title %}
+Loại bàn thắng
+{% endblock %}
+
+{% block model_menu_bar %}
+<ul class="nav nav-tabs actions-nav">
+    <li class="active">
+        <a href="javascript:void(0)">Danh sách {% if count %} ({{ count }}){% endif %}</a>
+    </li>
+    <li>
+        <a href="/admin/themloaibanthangview/" title="Tạo 1 dòng dữ liệu mới">Tạo</a></li>
+    <li>
+        <a href="javascript:void(0)" onclick="return modelActions.execute('delete');">Xóa</a>
+    </li>
+    {% if search_supported %}
+    <li>
+        {{ model_layout.search_form() }}
+    </li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block empty_list_message %}
+<h4 class="text-center bg-warning" style="padding:10px">Không có dòng dữ liệu nào!</h4>
+{% endblock %}
+
+{% block brand %}
+<a class="navbar-brand mbrand" href="/admin">QUẢN LÝ GIẢI VÔ ĐỊCH BÓNG ĐÁ QUỐC GIA</a>
+{% endblock %}
+
+{% block main_menu %}
+{% include "admin/utils/main-menu.html" %}
+{% endblock %}
