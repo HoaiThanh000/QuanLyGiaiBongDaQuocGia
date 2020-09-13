@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+
+
+{% block headbg %}
+<div class="slider-area position-relative" style="background-size: 1845px 670px !important;">
+    <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center" style="height:650px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-10">
+                        <div class="hero__caption" >
+                            <h1 data-animation="fadeInLeft" data-delay="0.4s" style="font-size:100px; margin-top: 10px !important;">KẾT QUẢ</h1>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block body2 %}
+
+<div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s" style="margin-bottom:40px !important">
+  <h2 style="text-transform:none !important; font-size: 80px !important; padding-top:15px !important;">Kết quả của giải đấu</h2>
+ <table width="90%" border="3px solid white" style="margin: 10px auto; padding-bottom:20px;">
+  <tr align="center" bgcolor="silver" style="font-size: 38px;">
+   <th>Mã trận đấu</th>
+   <th>Đội chủ nhà</th>
+   <th>Đội khách</th>
+   <th>Tỷ số</th>
+  </tr>
+  {% for tg in tgs   %}
+  <tr align="center" style="font-size: 33px; color:white;">
+   <th>{{ tg.matrandau }}</th>
+   <th>{{ tg.doi_nha.tendoi }}</th>
+   <th>{{ tg.doi_khach.tendoi }}</th>
+   <th>{{ tg.tyso }}</th>
+  </tr>
+  {% endfor %}
+ </table>
+
+ <table width="90%" border="3px solid white" style="margin: 10px auto; padding-bottom:20px;">
+  <tr align="center" bgcolor="silver" style="font-size: 38px;">
+   <th>Mã trận đấu</th>
+   <th>Mã bàn thắng</th>
+   <th>Cầu thủ ghi bàn</th>
+   <th>Loại bàn thắng</th>
+   <th>Thời điểm</th>
+  </tr>
+  {% for bt in bts  %}
+  <tr align="center" style="font-size: 33px; color:white;">
+   <th>{{ bt.trandau.matrandau }}</th>
+   <th>{{ bt.mabanthang }}</th>
+   <th>{{ bt.cauthu.tencauthu }}</th>
+   <th>{{ bt.loaibanthang.tenloaibanthang }}</th>
+   <th>{{ bt.thoidiem }}</th>
+  </tr>
+  {% endfor %}
+ </table>
+
+{% endblock %}
+

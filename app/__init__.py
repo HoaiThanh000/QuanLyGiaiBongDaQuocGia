@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = "\x0f\xc8\xf8hNvH\xb6[R\xd2\xf3\x90B\xfdK"
 
 app.config[
-    "SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:ithades1@localhost/db_quanlygiaibongdaquocgia?charset=utf8mb4"
+    "SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:matkhaula1@localhost/db_quanlygiaibongdaquocgia?charset=utf8mb4"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 db = SQLAlchemy(app=app)
