@@ -1,0 +1,75 @@
+.mbrand{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.mmenu{
+    font-size:15px;
+    margin-left:4%;
+}
+
+ul.mmenu > li{
+    width: 15%;
+    margin-left:5px;
+    margin-right:5px;
+    margin-bottom:5px;
+}
+
+ul.mmenu > li > a{
+    padding: 10px;
+    text-align: center;
+    background-color:#e7e7e7
+}
+
+.mimg{
+    width:100%;
+    height: 550px;
+}
+
+.mtitle{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    font-size:30px;
+
+}
+
+.mtable{
+    margin-top:20px;
+}
+
+th, td{
+    text-align:center;
+}
+
+.mbody{
+    font-size:20px;
+}
+
+.mdate{
+    text-align:left;
+    font-size:30px;
+}
+
+.mbtn{
+    margin-top:5px;
+    font-size:15px;
+    margin-left:5.5%
+}
+
+.ma{
+    color:white;
+    text-decoration: none;
+}
+
+.ma:hover, .ma:visited, .ma:active{
+    color:white;
+    text-decoration: none;
+}
+
+form > div{
+    margin-top:20px
+}
+form > div > div{
+    margin-bottom:20px;
+}

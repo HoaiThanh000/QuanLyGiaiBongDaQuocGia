@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+
+
+{% block headbg %}
+<div class="slider-area position-relative" style="background-size: 1845px 670px !important;">
+    <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center" style="height:650px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-10">
+                        <div class="hero__caption" >
+                            <h1 data-animation="fadeInLeft" data-delay="0.4s" style="font-size:100px; margin-top: 10px !important;">QUI ĐỊNH</h1>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block body2 %}
+
+<div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s" style="margin-bottom:40px !important">
+  <h2 style="text-transform:none !important; font-size: 80px !important; padding-top:15px !important;">Qui định của giải đấu</h2>
+    <table width="90%" border="3px solid white"  style="margin: 0 auto; padding-bottom:20px;">
+    <tr align="center" bgcolor="silver" style="font-size: 38px;">
+        <th>Tên qui định</th>
+        <th>Nội dung</th>
+    </tr>
+        {% for qd in qds %}
+    <tr align="center" style="font-size: 30px; color:white;">
+        <th align="center">Qui định 1</th>
+        <th align="left">
+                <ul style="text-align:left; padding-left:15px;">
+                    <li>Tuổi của cầu thử từ {{ qd.tuoitoithieu }} đến {{ qd.tuoitoida }} tuổi.</li>
+                    <li>Số cầu thủ của một đội bóng từ {{ qd.socauthutoithieu }} đến {{ qd.socauthutoida }} cầu thủ.</li>
+                    <li>Số cầu thủ nước ngoài tối đa {{ qd.socauthunuocngoaitoida }} cầu thủ.</li>
+                </ul>
+        </th>
+    </tr>
+    <tr align="center" style="font-size: 30px; color:white;">
+        <th align="center">Qui định 3</th>
+        <th align="left">
+                <ul style="text-align:left; padding-left:15px;">
+                    <li>Số lượng các loại bàn thắng: {{ qd.soluongcacloaibanthang }} loại.</li>
+                    <li>Thời điểm ghi bàn tối đa là {{ qd.thoidiemghibantoida }}.</li>
+                </ul>
+        </th>
+    </tr>
+        <tr align="center" style="font-size: 30px; color:white;">
+        <th align="center">Qui định 5</th>
+        <th align="left">
+                <ul style="text-align:left; padding-left:15px;">
+                    <li>Điểm số thắng: {{ qd.diemsothang }}, điểm số hòa: {{ qd.diemsohoa }}, điểm số thua: {{ qd.diemsothua }}.</li>
+                    <li>Thứ tự ưu tiên là {{ qd.thutuuutien }} (1:Bàn thắng, 2:Hiệu số, 3:Điểm, 4:Đối kháng).</li>
+                </ul>
+        </th>
+    </tr>
+{% endfor %}
+    </table>
+</div>
+
+{% endblock %}
+

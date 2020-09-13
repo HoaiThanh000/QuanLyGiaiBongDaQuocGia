@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+
+{% block headbg %}
+<div class="slider-area position-relative" style="background-size: 1845px 670px !important;">
+    <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center" style="height:650px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-10">
+                        <div class="hero__caption" >
+                            <h1 data-animation="fadeInLeft" data-delay="0.4s" style="font-size:100px; margin-top: 10px !important;">CẦU THỦ</h1>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body2 %}
+
+<div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s" style="margin-bottom:40px !important">
+  <h2 style="text-transform:none !important; font-size: 80px !important; padding-top:15px !important;">Danh sách cầu thủ</h2>
+ <form action="{{ url_for('cauthu_list') }}">
+        <input type="text" name="keyword" placeholder="Nhập tên cầu thủ cần tìm..">
+        <button type="submit" class="btn-default">
+         <i class="fas fa-search fa-3x"></i>
+        </button>
+     <div>
+         <h1 style="display:inline-block;color: white; margin-right:5px;">FROM</h1>
+         <input type="date" name="date_start"/>
+         <h1 style="display:inline-block; color:white; margin: 0px 5px;">TO</h1>
+         <input type="date" name="date_end" />
+         <button type="submit" class="btn-default" style="margin-left: 5px; border-radius:15px; font-size:10px;">
+         <i class="fas fa-search fa-2x"></i>
+        </button>
+     </div>
+</form>
+ </div>
+
+ <table width="95%" border="3px solid white"  style="margin: 0 auto; padding-bottom:20px;margin-bottom:30px;">
+  <tr align="center" bgcolor="silver" style="font-size: 38px;">
+   <th>Mã cầu thủ</th>
+   <th>Tên cầu thủ</th>
+   <th>Ngày sinh</th>
+   <th>Loại cầu thủ</th>
+   <th>Đội bóng</th>
+   <th>Ghi chú</th>
+  </tr>
+    {% for cauthu in ct %}
+  <tr align="center" style="font-size: 38px; color:white;">
+   <th>{{ cauthu.macauthu }}</th>
+   <th>{{ cauthu.tencauthu }}</th>
+   <th>{{ cauthu.ngaysinh }}</th>
+   <th>{{ cauthu.loaicauthu.tenloaicauthu }}</th>
+   <th>{{ cauthu.doibong.tendoi }}</th>
+   <th>{{ cauthu.ghichu }}</th>
+  </tr>
+    {% endfor %}
+ </table>
+
+{% endblock %}
+

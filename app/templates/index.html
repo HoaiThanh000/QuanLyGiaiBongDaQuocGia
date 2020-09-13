@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Trang chủ</title>
-</head>
-<body>
-<h1>Quản lý giải bóng đá quốc gia</h1>
-</body>
-</html>
+{% extends 'base/base.html' %}
+
+{% block body1 %}
+<!--? Team -->
+
+    <section class="team-area fix">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                        <h2 style="text-transform:none !important; font-size: 90px !important;">Câu lạc bộ xuất sắc năm 2019</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s" >
+                        <div class="cat-icon">
+                            <img src="{{ url_for('static', filename='img/HAGL.jpg') }}" alt="">
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="services.html">CLB Hoàng Anh Gia Lai</a></h5>
+                            <p>Câu lạc bộ bóng đá Hoàng Anh Gia Lai là một câu lạc bộ bóng đá chuyên nghiệp Việt Nam.
+                                Tổng hành dinh của câu lạc bộ đóng tại thành phố Pleiku, tỉnh Gia Lai. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
+                        <div class="cat-icon">
+                            <img src="{{ url_for('static', filename='img/SLNA2.jpg') }}" alt="">
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="services.html">CLB Sông Lam Nghệ An</a></h5>
+                            <p>Câu lạc bộ bóng đá Sông Lam Nghệ An là một câu lạc bộ bóng đá chuyên nghiệp tại Việt Nam, có trụ sở thành phố Vinh, tỉnh Nghệ An.
+                                Là CLB giàu truyền thống và đậm bản sắc nhất Việt Nam. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
+                        <div class="cat-icon">
+                            <img src="{{ url_for('static', filename='img/TQN2.jpg') }}" alt="">
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="services.html">CLB Than Quảng Ninh</a></h5>
+                            <p>Câu lạc bộ bóng đá Than Quảng Ninh, gọi tắt là Than Quảng Ninh, biệt hiệu là Đội bóng Đất Mỏ,
+                                là một đội bóng đang thi đấu ở giải bóng đá V-League 1.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services End -->
+{% endblock %}
+
+{% block video %}
+ <!--? video_start -->
+    <div class="video-area section-bg2 d-flex align-items-center" style="background-image: url(static/img/LogoVL.png);">
+        <div class="container">
+            <div class="video-wrap position-relative">
+                <div class="video-icon" >
+                    <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=MVEfagGlno4" style="line-height:130px !important; opacity: 0.7;"><i class="fas fa-play fa-4x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- video_end -->
+{% endblock %}

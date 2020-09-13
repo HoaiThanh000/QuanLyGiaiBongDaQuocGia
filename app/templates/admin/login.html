@@ -33,23 +33,23 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
                 <span class="login100-form-title p-b-51">
-						Login
+						ĐĂNG NHẬP
                 </span>
 				<form class="login100-form validate-form flex-sb flex-w" method="post" action="{{ url_for('login_admin') }}">
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Vui lòng nhập tên tài khoản">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Tên tài khoản">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Vui lòng nhập mật khẩu">
-						<input class="input100" type="password" name="password" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Mật khẩu">
 						<span class="focus-input100"></span>
 					</div>
 					{% if msg_err %}
 						<div class="alert alert-danger wrap-input100" style="background-color:#f8d7da"> {{ msg_err }} </div>
 					{% endif %}
 					<div class="container-login100-form-btn m-t-17">
-						<input class="login100-form-btn" type="submit" value="Login"/>
+						<input class="login100-form-btn" type="submit" value="Đăng nhập"/>
 					</div>
 				</form>
 			</div>
@@ -74,7 +74,7 @@
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js') }}"></script>
 <!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main-admin.js') }}"></script>
 
 </body>
 </html>

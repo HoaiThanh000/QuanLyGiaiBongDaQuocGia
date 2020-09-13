@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% block headbg %}
+<div class="slider-area position-relative" style="background-size: 1845px 670px !important;">
+    <div class="slider-active">
+            <!-- Single Slider -->
+            <div class="single-slider slider-height d-flex align-items-center" style="height:650px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-10">
+                        <div class="hero__caption" >
+                            <h1 data-animation="fadeInLeft" data-delay="0.4s" style="font-size:100px; margin-top: 10px !important;">ĐỘI BÓNG</h1>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+{% block body2 %}
+
+<div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s" style="margin-bottom:40px !important">
+  <h2 style="text-transform:none !important; font-size: 80px !important; padding-top:15px !important;">Danh sách đội bóng</h2>
+ </div>
+ <table width="95%" border="2px solid white" style="margin: 0 auto; padding-bottom:20px; margin-bottom:30px;">
+  <tr align="center" bgcolor="silver" style="font-size: 38px;">
+   <th>Mã đội bóng</th>
+   <th>Tên đội bóng</th>
+   <th>Sân nhà</th>
+  </tr>
+    {% for doibong in dbg %}
+  <tr align="center" style="font-size: 38px; color:white;">
+   <th>{{ doibong.madoi }}</th>
+   <th>{{ doibong.tendoi }}</th>
+   <th>{{ doibong.sannha }}</th>
+  </tr>
+    {% endfor %}
+ </table>
+{% endblock %}
+
